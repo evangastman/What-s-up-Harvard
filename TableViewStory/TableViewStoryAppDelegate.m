@@ -7,11 +7,16 @@
 //
 
 #import "TableViewStoryAppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation TableViewStoryAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"lTGVlGetoDJWXi6E4HzKF0AezAy3ZSrC3tt1pkCf"
+                  clientKey:@"etttgrSj35wNrlNNOFwQFgQnTlAmcz0vfG4cZCyr"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     // Override point for customization after application launch.
     return YES;
 }
