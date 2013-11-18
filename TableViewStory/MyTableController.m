@@ -8,6 +8,7 @@
 #import "MyTableController.h"
 #import "EventCell.h"
 #import "EventDetailViewController.h"
+#import "EventDetailModel.h"
 UIImage *tempimage;
 
 @implementation MyTableController
@@ -47,8 +48,8 @@ UIImage *tempimage;
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    //Uncomment the following line to preserve selection between presentations.
+    //self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -141,6 +142,14 @@ UIImage *tempimage;
     // Configure the cell
     cell.textLabel.text = [object objectForKey:@"name"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Location: %@", [object objectForKey:@"location"]];
+    PFFile *userImageFile = object[@"image"];
+    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            UIImage *image = [UIImage imageWithData:imageData];
+        cell.imageView.image = image;
+        cell.imageView.frame = CGRectMake(0,0,0,0);
+        cell.imageView.hidden = YES;
+        
+    }];
 
     return cell;
 }
@@ -154,10 +163,7 @@ UIImage *tempimage;
 
         EventDetailViewController *detailViewController =[segue destinationViewController];
         
-        
-        detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text];
-
-        
+        /*
         PFQuery *query = [PFQuery queryWithClassName:@"Events"];
         [query whereKey:@"name" equalTo:selectedCell.textLabel.text];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -173,7 +179,7 @@ UIImage *tempimage;
                     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
                         if (!error) {
                             UIImage *image = [UIImage imageWithData:imageData];
-                            [image setAccessibilityIdentifier:@"obama.jpg"] ;
+                            [image setAccessibilityIdentifier:@"image.jpg"] ;
                             tempimage = image;
                             
                             //self.tableView.backgroundView = [[UIImageView alloc] initWithImage:image];
@@ -190,12 +196,12 @@ UIImage *tempimage;
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
         }];
+         
+        */
         
-        detailViewController.eventImage = tempimage;
-        
+        detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, selectedCell.imageView.image];
             //[searchResults objectAtIndex:myIndexPath.row];
 
-        //detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text];
     }
     
 }

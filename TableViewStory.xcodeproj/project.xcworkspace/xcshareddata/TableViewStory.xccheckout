@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5EE1FCA6-9F86-445E-8C7A-C43A6BC5843A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TableViewStory</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FA428CDE-357D-4C3D-8F96-43CF7BB14560</key>
+		<string>https://github.com/whatsupharvard/TableViewStory.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TableViewStory.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FA428CDE-357D-4C3D-8F96-43CF7BB14560</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/whatsupharvard/TableViewStory.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FA428CDE-357D-4C3D-8F96-43CF7BB14560</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FA428CDE-357D-4C3D-8F96-43CF7BB14560</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TableViewStory</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080B570B183AA686002E1D3E /* EventDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 080B570A183AA686002E1D3E /* EventDetailModel.m */; };
 		080CFBB8181EE8030004C363 /* bloomberg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 080CFBB6181EE8030004C363 /* bloomberg.jpg */; };
 		080CFBB9181EE8030004C363 /* entrepreneurship.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 080CFBB7181EE8030004C363 /* entrepreneurship.jpg */; };
 		0811CD37182042E700C0F462 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0811CD35182042E700C0F462 /* Model.xcdatamodeld */; };
@@ -56,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		080B5709183AA685002E1D3E /* EventDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailModel.h; sourceTree = "<group>"; };
+		080B570A183AA686002E1D3E /* EventDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailModel.m; sourceTree = "<group>"; };
 		080CFBB6181EE8030004C363 /* bloomberg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bloomberg.jpg; sourceTree = "<group>"; };
 		080CFBB7181EE8030004C363 /* entrepreneurship.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = entrepreneurship.jpg; sourceTree = "<group>"; };
 		0811CD36182042E700C0F462 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				0877B6B8181DF68900EBF010 /* CarTableViewCell.m */,
 				0877B6BA181DFF5800EBF010 /* EventDetailViewController.h */,
 				0877B6BB181DFF5800EBF010 /* EventDetailViewController.m */,
+				080B5709183AA685002E1D3E /* EventDetailModel.h */,
+				080B570A183AA686002E1D3E /* EventDetailModel.m */,
 				0877B697181DF4D000EBF010 /* Images.xcassets */,
 				0877B686181DF4D000EBF010 /* Supporting Files */,
 				0811CD35182042E700C0F462 /* Model.xcdatamodeld */,
@@ -342,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088B05C51835B12100324699 /* EventCell.m in Sources */,
+				080B570B183AA686002E1D3E /* EventDetailModel.m in Sources */,
 				0877B690181DF4D000EBF010 /* TableViewStoryAppDelegate.m in Sources */,
 				0877B6BC181DFF5900EBF010 /* EventDetailViewController.m in Sources */,
 				0877B68C181DF4D000EBF010 /* main.m in Sources */,

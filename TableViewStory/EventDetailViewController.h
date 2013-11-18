@@ -10,7 +10,6 @@
 
 @interface EventDetailViewController : UIViewController
 @property (strong, nonatomic) NSArray *EventDetailModel;
-@property (strong, nonatomic) UIImage *eventImage;
 @property (strong, nonatomic) IBOutlet UILabel *eventLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

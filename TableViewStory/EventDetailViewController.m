@@ -31,7 +31,7 @@
 	// Do any additional setup after loading the view.
     _eventLabel.text = _EventDetailModel[0];
     _descriptionLabel.text = _EventDetailModel[1];
-    _imageView.image = _eventImage;
+    [self.imageView setImage:_EventDetailModel[2]];
     
     //[UIImage imageNamed:@"obama.jpg"];
     
