@@ -1,64 +1,196 @@
 //
-//  MyTableController.m
+//  MyTableDateController.m
 //  ParseStarterProject
 //
 //  Created by James Yu on 12/29/11.
 //
 
-#import "MyTableController.h"
-#import "EventCell.h"
+#import "MyTableDateController.h"
+#import "EventDateCell.h"
 #import "EventDetailViewController.h"
 #import "EventDetailModel.h"
 UIImage *tempimage;
 
-@interface MyTableController() <UISearchDisplayDelegate, UISearchBarDelegate> {
+
+@interface MyTableDateController() <UISearchDisplayDelegate, UISearchBarDelegate> {
     
 }
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UISearchDisplayController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
+@property (nonatomic, retain) NSMutableDictionary *sections;
+@property (nonatomic, retain) NSMutableDictionary *sectionToDateMap;
 
 @end
 
 
-@interface MyTableController ()
+@interface MyTableDateController ()
 
 @end
 
-@implementation MyTableController
+@implementation MyTableDateController
+@synthesize sections = _sections;
+@synthesize sectionToDateMap = _sectionToDateMap;
 
-- (id)initWithCoder:(NSCoder *)aCoder
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aCoder];
+    
+    self = [super initWithClassName:@"Events"];
+    self = [super initWithCoder:aDecoder];
     
     if (self) {
-
-        // Custom the table
         
-        // The className to query on
         self.parseClassName = @"Events";
         
-        // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"name";
         
         // The title for this table in the Navigation Controller.
-        self.title = @"Trending";
+        self.title = @"By Date";
         
-        // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         
-        // Whether the built-in pagination is enabled
+        
         self.paginationEnabled = YES;
         
-        // The number of objects to show per page
-        //self.objectsPerPage = 10;
+        
+        self.sections = [NSMutableDictionary dictionary];
+        self.sectionToDateMap = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-#pragma mark - View lifecycle
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    return self.sections.allKeys.count;
+}
+
+- (NSString *)timeForSection:(NSInteger)section {
+    return [self.sectionToDateMap objectForKey:[NSNumber numberWithInt:section]];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+
+{
+    NSString *athleteType = [self timeForSection:section];
+    NSArray *rowIndecesInSection = [self.sections objectForKey:athleteType]; return rowIndecesInSection.count;
+}
+
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+    [self.sections removeAllObjects];
+    [self.sectionToDateMap removeAllObjects];
+    
+    NSInteger section = 0;
+    NSInteger rowIndex = 0;
+    for (PFObject *object in self.objects) {
+        NSString *date = [object objectForKey:@"datestring"];
+        NSMutableArray *objectsInSection = [self.sections objectForKey:date];
+        if (!objectsInSection) {
+            objectsInSection = [NSMutableArray array];
+            
+            [self.sectionToDateMap setObject:date forKey:[NSNumber numberWithInt:section++]];
+        }
+        
+        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+        [self.sections setObject:objectsInSection forKey:date];
+    }
+}
+
+- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {NSString *athleteType = [self timeForSection:indexPath.section];
+    
+    NSArray *rowIndecesInSection = [self.sections objectForKey:athleteType];
+    
+    NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
+    return [self.objects objectAtIndex:[rowIndex intValue]];
+}
+
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    if (self.pullToRefreshEnabled) {
+        query.cachePolicy = kPFCachePolicyNetworkOnly;
+    }
+    
+    if (self.objects.count == 0) {
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    }
+    
+    [query orderByAscending:@"date"];
+    
+    return query;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UILabel *sectionHeader = [[UILabel alloc] initWithFrame:CGRectNull];
+    sectionHeader.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    sectionHeader.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
+    //sectionHeader.textColor = [UIColor whiteColor];
+    sectionHeader.text = [self timeForSection:section];
+    return sectionHeader;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:  (NSIndexPath *)indexPath object:(PFObject *)object {
+    static NSString *CellIdentifier = @"EventDateCell";
+    
+    PFTableViewCell *cell = (PFTableViewCell *)[tableView   dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle    reuseIdentifier:CellIdentifier];
+    }
+    
+    if (tableView != self.searchDisplayController.searchResultsTableView) {
+    cell.textLabel.text = [object objectForKey:@"name"];
+    cell.detailTextLabel.text = [object objectForKey:@"location"];
+    
+    PFFile *userImageFile = object[@"image"];
+    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+        UIImage *image = [UIImage imageWithData:imageData];
+        cell.imageView.image = image;
+        //cell.imageView.frame = CGRectMake(20,20,20,20);
+        cell.imageView.hidden = NO;
+        
+    }];
+    }
+    
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section {
+    return 15;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    
+    if ([[segue identifier] isEqualToString:@"ShowEventDateDetails"])
+    {
+        NSIndexPath *selectedRowIndexPath = [self.tableView indexPathForSelectedRow];
+        UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:selectedRowIndexPath];
+        
+        EventDetailViewController *detailViewController =[segue destinationViewController];
+        
+        detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, @"time", selectedCell.imageView.image];
+        
+    }
+}
+
+
+
+
+//old code
+#pragma mark - View lifecycle
+/*
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -93,25 +225,7 @@ UIImage *tempimage;
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -126,74 +240,46 @@ UIImage *tempimage;
     
     // Release any cached data, images, etc that aren't in use.
 }
-
+*/
 #pragma mark - Parse
 
-- (void)objectsDidLoad:(NSError *)error {
-    [super objectsDidLoad:error];
-    
-    // This method is called every time objects are loaded from Parse via the PFQuery
-}
-
-- (void)objectsWillLoad {
-    [super objectsWillLoad];
-    
-    // This method is called before a PFQuery is fired to get more objects
-}
-
-
- // Override to customize what kind of query to perform on the class. The default is to query for
- // all objects ordered by createdAt descending.
-- (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
- 
-    // If no objects are loaded in memory, we look to the cache first to fill the table
-    // and then subsequently do a query against the network.
-    if ([self.objects count] == 0) {
-        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    }
- 
-    [query orderByAscending:@"priority"];
- 
-    return query;
-}
 
 
 
- // Override to customize the look of a cell representing an object. The default is to display
- // a UITableViewCellStyleDefault style cell with the label being the first key in the object. 
+// Override to customize the look of a cell representing an object. The default is to display
+// a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 /*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
  static NSString *CellIdentifier = @"EventCell";
  
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ if (cell == nil) {
+ cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+ }
  
-    // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Location: %@", [object objectForKey:@"location"]];
-    PFFile *userImageFile = object[@"image"];
-    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            UIImage *image = [UIImage imageWithData:imageData];
-        cell.imageView.image = image;
-        cell.imageView.frame = CGRectMake(0,0,0,0);
-        cell.imageView.hidden = YES;
-        
-    }];
-
-    return cell;
-}
-*/
-
+ // Configure the cell
+ cell.textLabel.text = [object objectForKey:@"name"];
+ cell.detailTextLabel.text = [NSString stringWithFormat:@"Location: %@", [object objectForKey:@"location"]];
+ PFFile *userImageFile = object[@"image"];
+ [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+ UIImage *image = [UIImage imageWithData:imageData];
+ cell.imageView.image = image;
+ cell.imageView.frame = CGRectMake(0,0,0,0);
+ cell.imageView.hidden = YES;
+ 
+ }];
+ 
+ return cell;
+ }
+ */
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"EventCell";
-
+    static NSString *CellIdentifier = @"EventDateCell";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-
+    
     
     if (tableView != self.searchDisplayController.searchResultsTableView) {
         cell.textLabel.text = [object objectForKey:@"name"];
@@ -203,7 +289,7 @@ UIImage *tempimage;
         [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
             UIImage *image = [UIImage imageWithData:imageData];
             cell.imageView.image = image;
-            //cell.imageView.frame = CGRectMake(20,20,20,20);
+            cell.imageView.frame = CGRectMake(20,20,20,20);
             cell.imageView.hidden = NO;
             
         }];
@@ -213,7 +299,7 @@ UIImage *tempimage;
         PFUser *obj2 = [self.searchResults objectAtIndex:indexPath.row];
         cell.textLabel.text = [obj2 objectForKey:@"name"];
         cell.detailTextLabel.text = [object objectForKey:@"location"];
-
+        
     }
     return cell;
     
@@ -221,59 +307,59 @@ UIImage *tempimage;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"ShowEventDetails"])
+    if ([[segue identifier] isEqualToString:@"ShowEventDateDetails"])
     {
         NSIndexPath *selectedRowIndexPath = [self.tableView indexPathForSelectedRow];
         UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:selectedRowIndexPath];
-
+        
         EventDetailViewController *detailViewController =[segue destinationViewController];
         
         detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, @"time", selectedCell.imageView.image];
-    
-           /*
-        PFQuery *query = [PFQuery queryWithClassName:@"Events"];
-        [query whereKey:@"name" equalTo:selectedCell.textLabel.text];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            
-            if (!error) {
-                // The find succeeded.
-                NSLog(@"Successfully retrieved %d scores.", objects.count);
-                
-                // Do something with the found objects
-                for (PFObject *object in objects) {
-                    
-                    PFFile *userImageFile = object[@"image"];
-                    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                        if (!error) {
-                            UIImage *image = [UIImage imageWithData:imageData];
-                            [image setAccessibilityIdentifier:@"image.jpg"] ;
-                            tempimage = image;
-                            
-                            //self.tableView.backgroundView = [[UIImageView alloc] initWithImage:image];
-                            NSLog(@"%@", image.accessibilityIdentifier);
-                        }
-                    }];
-
-                    
-                }
-                
-                
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
+        
+ 
+         PFQuery *query = [PFQuery queryWithClassName:@"Events"];
+         [query whereKey:@"name" equalTo:selectedCell.textLabel.text];
+         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          
-        */
+         if (!error) {
+         // The find succeeded.
+         NSLog(@"Successfully retrieved %d scores.", objects.count);
+         
+         // Do something with the found objects
+         for (PFObject *object in objects) {
+         
+         PFFile *userImageFile = object[@"image"];
+         [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+         if (!error) {
+         UIImage *image = [UIImage imageWithData:imageData];
+         [image setAccessibilityIdentifier:@"image.jpg"] ;
+         tempimage = image;
+         
+         //self.tableView.backgroundView = [[UIImageView alloc] initWithImage:image];
+         NSLog(@"%@", image.accessibilityIdentifier);
+         }
+         }];
+         
+         
+         }
+         
+         
+         } else {
+         // Log details of the failure
+         NSLog(@"Error: %@ %@", error, [error userInfo]);
+         }
+         }];
+         
+ 
         if ([self.searchDisplayController isActive]) {
             NSLog(@"searched");
             //selectedRowIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             //selectedCell = [self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:selectedRowIndexPath];
             //detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, selectedCell.imageView.image];
         }
-            
-            //[searchResults objectAtIndex:myIndexPath.row];
-            
+        
+        //[searchResults objectAtIndex:myIndexPath.row];
+        
     }
     
 }
@@ -314,9 +400,11 @@ UIImage *tempimage;
     }
     
 }
-/*
+
+
+
  // Override if you need to change the ordering of objects in the table.
- - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath { 
+ - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath {
  return [objects objectAtIndex:indexPath.row];
  }
  */
@@ -358,10 +446,10 @@ UIImage *tempimage;
  if (editingStyle == UITableViewCellEditingStyleDelete) {
  // Delete the row from the data source
  [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }   
+ }
  else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }   
+ }
  }
  */
 
@@ -382,21 +470,22 @@ UIImage *tempimage;
  */
 
 #pragma mark - Table view delegate
-
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            NSLog(@"Search1");
-            [self performSegueWithIdentifier: @"ShowEventDetails" sender: self];
-            NSLog(@"Search2");
-        }
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSLog(@"Search1");
+        [self performSegueWithIdentifier: @"ShowEventDateDetails" sender: self];
+        NSLog(@"Search2");
+    }
     
     
     // load next view and set title:
-
+    
 }
-
+*/
 
 @end
+

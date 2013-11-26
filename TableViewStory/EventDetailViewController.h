@@ -13,4 +13,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *eventLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @end

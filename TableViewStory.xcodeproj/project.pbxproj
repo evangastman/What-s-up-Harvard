@@ -21,6 +21,9 @@
 		0815C1C3183071520004F850 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815C1C2183071520004F850 /* Security.framework */; };
 		0815C1C51830715A0004F850 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815C1C41830715A0004F850 /* StoreKit.framework */; };
 		0815C1C7183071620004F850 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815C1C6183071620004F850 /* SystemConfiguration.framework */; };
+		0876DBA01842A8F9005AB689 /* MyTableDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0876DB9F1842A8F9005AB689 /* MyTableDateController.m */; };
+		0876DBA31842ACDB005AB689 /* EventDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0876DBA21842ACDB005AB689 /* EventDateCell.m */; };
+		0876DBA61842BFA0005AB689 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0876DBA51842BFA0005AB689 /* TestViewController.m */; };
 		0877B680181DF4D000EBF010 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B67F181DF4D000EBF010 /* Foundation.framework */; };
 		0877B682181DF4D000EBF010 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B681181DF4D000EBF010 /* CoreGraphics.framework */; };
 		0877B684181DF4D000EBF010 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B683181DF4D000EBF010 /* UIKit.framework */; };
@@ -72,6 +75,12 @@
 		0815C1C2183071520004F850 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0815C1C41830715A0004F850 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0815C1C6183071620004F850 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0876DB9E1842A8F9005AB689 /* MyTableDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTableDateController.h; path = ../MyTableDateController.h; sourceTree = "<group>"; };
+		0876DB9F1842A8F9005AB689 /* MyTableDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTableDateController.m; path = ../MyTableDateController.m; sourceTree = "<group>"; };
+		0876DBA11842ACDB005AB689 /* EventDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDateCell.h; sourceTree = "<group>"; };
+		0876DBA21842ACDB005AB689 /* EventDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDateCell.m; sourceTree = "<group>"; };
+		0876DBA41842BF9F005AB689 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		0876DBA51842BFA0005AB689 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		0877B67C181DF4D000EBF010 /* TableViewStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0877B67F181DF4D000EBF010 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0877B681181DF4D000EBF010 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,9 +194,15 @@
 			children = (
 				088B05C31835B12100324699 /* EventCell.h */,
 				088B05C41835B12100324699 /* EventCell.m */,
+				0876DBA11842ACDB005AB689 /* EventDateCell.h */,
+				0876DBA21842ACDB005AB689 /* EventDateCell.m */,
 				088B05C11835ADD700324699 /* Main.storyboard */,
 				088B05BE1835AD4700324699 /* MyTableController.h */,
 				088B05BF1835AD4700324699 /* MyTableController.m */,
+				0876DB9E1842A8F9005AB689 /* MyTableDateController.h */,
+				0876DB9F1842A8F9005AB689 /* MyTableDateController.m */,
+				0876DBA41842BF9F005AB689 /* TestViewController.h */,
+				0876DBA51842BFA0005AB689 /* TestViewController.m */,
 				0877B68E181DF4D000EBF010 /* TableViewStoryAppDelegate.h */,
 				0877B68F181DF4D000EBF010 /* TableViewStoryAppDelegate.m */,
 				0877B6B4181DF58B00EBF010 /* CarTableViewController.h */,
@@ -350,6 +365,9 @@
 				080B570B183AA686002E1D3E /* EventDetailModel.m in Sources */,
 				0877B690181DF4D000EBF010 /* TableViewStoryAppDelegate.m in Sources */,
 				0877B6BC181DFF5900EBF010 /* EventDetailViewController.m in Sources */,
+				0876DBA01842A8F9005AB689 /* MyTableDateController.m in Sources */,
+				0876DBA31842ACDB005AB689 /* EventDateCell.m in Sources */,
+				0876DBA61842BFA0005AB689 /* TestViewController.m in Sources */,
 				0877B68C181DF4D000EBF010 /* main.m in Sources */,
 				0877B6B9181DF68900EBF010 /* CarTableViewCell.m in Sources */,
 				088B05C01835AD4700324699 /* MyTableController.m in Sources */,
