@@ -1,23 +1,36 @@
 //
 //  MyTableController.m
-//  ParseStarterProject
+//  What's Up Harvard
 //
-//  Created by James Yu on 12/29/11.
+//  Created by Alex Yang on 2013-11-14.
+//  Copyright (c) 2013 Alex Yang. All rights reserved.
+//  Based off of ParseStarterProject created by James Yu on 12/29/11.
 //
 
 #import "MyTableController.h"
 #import "EventCell.h"
 #import "EventDetailViewController.h"
 #import "EventDetailModel.h"
-UIImage *tempimage;
+#import <QuartzCore/QuartzCore.h>
+#import "MyLogInViewController.h"
+#import "MySignUpViewController.h"
+
 
 @interface MyTableController() <UISearchDisplayDelegate, UISearchBarDelegate> {
     
 }
-
+// create search bar
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UISearchDisplayController *searchController;
+
+// objects to handle search method
 @property (nonatomic, strong) NSMutableArray *searchResults;
+
+// additional objects to be passed on to event detail view controller
+@property (strong, nonatomic) UIImage *tempimage;
+@property (strong, nonatomic) NSString *eventtime;
+@property (strong, nonatomic) NSString *eventdate;
+@property (strong, nonatomic) NSString *eventid;
 
 @end
 
@@ -34,8 +47,7 @@ UIImage *tempimage;
     
     if (self) {
 
-        // Custom the table
-        
+        // Initialize the table
         // The className to query on
         self.parseClassName = @"Events";
         
@@ -45,14 +57,14 @@ UIImage *tempimage;
         // The title for this table in the Navigation Controller.
         self.title = @"Trending";
         
-        // Whether the built-in pull-to-refresh is enabled
+        // Enable pull-to-refresh
         self.pullToRefreshEnabled = YES;
         
-        // Whether the built-in pagination is enabled
+        // Enable built-in pagination
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        //self.objectsPerPage = 10;
+        self.objectsPerPage = 7;
     }
     return self;
 }
@@ -62,7 +74,8 @@ UIImage *tempimage;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    // load search bar
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     
     self.tableView.tableHeaderView = self.searchBar;
@@ -82,15 +95,14 @@ UIImage *tempimage;
     //Uncomment the following line to preserve selection between presentations.
     //self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    //Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,6 +113,29 @@ UIImage *tempimage;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (![PFUser currentUser]) { // No user logged in
+        // Create the log in view controller
+        NSLog(@"not logged in");
+        
+        MyLogInViewController *logInViewController = [[MyLogInViewController alloc] init];
+        logInViewController.delegate = self;
+        
+        // Create the sign up view controller
+         MySignUpViewController *signUpViewController = [[MySignUpViewController alloc] init];
+         signUpViewController.delegate = self;
+        
+        // Assign the sign up controller to be displayed from the login controller
+        [logInViewController setSignUpController:signUpViewController];
+        
+        // Present the log in view controller
+        [self presentViewController:logInViewController animated:YES completion:NULL];
+    }
+}
+
+- (IBAction)logOutButtonTapAction:(id)sender {
+    [PFUser logOut];
+    [self viewDidAppear:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -123,8 +158,7 @@ UIImage *tempimage;
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+
 }
 
 #pragma mark - Parse
@@ -152,62 +186,28 @@ UIImage *tempimage;
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
- 
-    [query orderByAscending:@"priority"];
+    
+    // query for all events and sort by ascending priority
+    [query orderByDescending:@"priority"];
  
     return query;
 }
 
-
-
- // Override to customize the look of a cell representing an object. The default is to display
- // a UITableViewCellStyleDefault style cell with the label being the first key in the object. 
-/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"EventCell";
- 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
- 
-    // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Location: %@", [object objectForKey:@"location"]];
-    PFFile *userImageFile = object[@"image"];
-    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            UIImage *image = [UIImage imageWithData:imageData];
-        cell.imageView.image = image;
-        cell.imageView.frame = CGRectMake(0,0,0,0);
-        cell.imageView.hidden = YES;
-        
-    }];
-
-    return cell;
-}
-*/
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"EventCell";
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
-    
+    // set the labels of the cell equal to the event name and location
     if (tableView != self.searchDisplayController.searchResultsTableView) {
         cell.textLabel.text = [object objectForKey:@"name"];
         cell.detailTextLabel.text = [object objectForKey:@"location"];
-        
-        PFFile *userImageFile = object[@"image"];
-        [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            UIImage *image = [UIImage imageWithData:imageData];
-            cell.imageView.image = image;
-            //cell.imageView.frame = CGRectMake(20,20,20,20);
-            cell.imageView.hidden = NO;
-            
-        }];
-    }
+         }
+    
+    // if search results are present, set lables of the cell equal to the event names and locations retrieved from the search
     if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
         
         PFUser *obj2 = [self.searchResults objectAtIndex:indexPath.row];
@@ -228,48 +228,52 @@ UIImage *tempimage;
 
         EventDetailViewController *detailViewController =[segue destinationViewController];
         
-        detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, @"time", selectedCell.imageView.image];
-    
-           /*
+        if (self.searchDisplayController.active) {
+            NSLog(@"searched");
+            selectedRowIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            selectedCell = [self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:selectedRowIndexPath];
+            detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, @"date", @"time", @"id"];
+            detailViewController.eventimage = self.tempimage;
+            
+        }
+        
+        else {
+        // query the parse database to retrieve additional information
+
         PFQuery *query = [PFQuery queryWithClassName:@"Events"];
+            
+        // query based on selected cell name
         [query whereKey:@"name" equalTo:selectedCell.textLabel.text];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSError *error= nil;
+        NSArray *objects=[query findObjects:&error];
             
             if (!error) {
                 // The find succeeded.
                 NSLog(@"Successfully retrieved %d scores.", objects.count);
                 
-                // Do something with the found objects
                 for (PFObject *object in objects) {
-                    
+                
+                    // get image associated with event
                     PFFile *userImageFile = object[@"image"];
-                    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                        if (!error) {
-                            UIImage *image = [UIImage imageWithData:imageData];
-                            [image setAccessibilityIdentifier:@"image.jpg"] ;
-                            tempimage = image;
-                            
-                            //self.tableView.backgroundView = [[UIImageView alloc] initWithImage:image];
-                            NSLog(@"%@", image.accessibilityIdentifier);
-                        }
-                    }];
-
+                    NSData *imageData = [userImageFile getData];
+                    self.tempimage = [UIImage imageWithData:imageData];
+                    
+                    // get date, time and event id associated with event
+                    self.eventdate = [object objectForKey:@"datestring"];
+                    self.eventtime = [object objectForKey:@"time"];
+                    self.eventid = [object objectId];
                     
                 }
-                
-                
+
             } else {
                 // Log details of the failure
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
-        }];
-         
-        */
-        if ([self.searchDisplayController isActive]) {
-            NSLog(@"searched");
-            //selectedRowIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            //selectedCell = [self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:selectedRowIndexPath];
-            //detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, selectedCell.imageView.image];
+        
+        // pass the retrieved information onto the detailViewController
+        detailViewController.EventDetailModel = @[selectedCell.textLabel.text, selectedCell.detailTextLabel.text, self.eventdate, self.eventtime, self.eventid];
+        detailViewController.eventimage = self.tempimage;
+        
         }
             
             //[searchResults objectAtIndex:myIndexPath.row];
@@ -398,5 +402,74 @@ UIImage *tempimage;
 
 }
 
+#pragma mark - PFLogInViewControllerDelegate
+
+// Sent to the delegate to determine whether the log in request should be submitted to the server.
+- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
+    // Check if both fields are completed
+    if (username && password && username.length && password.length) {
+        return YES; // Begin login process
+    }
+    
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+    return NO; // Interrupt login process
+}
+
+// Sent to the delegate when a PFUser is logged in.
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Sent to the delegate when the log in attempt fails.
+- (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
+    NSLog(@"Failed to log in...");
+}
+
+// Sent to the delegate when the log in screen is dismissed.
+- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
+    NSLog(@"User dismissed the logInViewController");
+}
+
+
+#pragma mark - PFSignUpViewControllerDelegate
+
+// Sent to the delegate to determine whether the sign up request should be submitted to the server.
+- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
+    BOOL informationComplete = YES;
+    
+    // loop through all of the submitted data
+    for (id key in info) {
+        NSString *field = [info objectForKey:key];
+        if (!field || !field.length) { // check completion
+            informationComplete = NO;
+            break;
+        }
+    }
+    
+    // Display an alert if a field wasn't completed
+    if (!informationComplete) {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+    }
+    
+    return informationComplete;
+}
+
+// Sent to the delegate when a PFUser is signed up.
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Sent to the delegate when the sign up attempt fails.
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
+    NSLog(@"Failed to sign up...");
+}
+
+// Sent to the delegate when the sign up screen is dismissed.
+- (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
+    NSLog(@"User dismissed the signUpViewController");
+}
+
+
+#pragma mark - ()
 
 @end

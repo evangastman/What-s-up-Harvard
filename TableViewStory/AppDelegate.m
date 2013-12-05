@@ -1,24 +1,31 @@
 //
-//  TableViewStoryAppDelegate.m
-//  TableViewStory
+//  AppDelegate.m
+//  What's Up Harvard
 //
 //  Created by Alex Yang on 2013-10-27.
 //  Copyright (c) 2013 Alex Yang. All rights reserved.
+//  Based off of iOS references on www.parse.com
 //
-
-#import "TableViewStoryAppDelegate.h"
+#import "AppDelegate.h"
 #import <Parse/Parse.h>
 
-@implementation TableViewStoryAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Connect app with Parse database
     [Parse setApplicationId:@"lTGVlGetoDJWXi6E4HzKF0AezAy3ZSrC3tt1pkCf"
                   clientKey:@"etttgrSj35wNrlNNOFwQFgQnTlAmcz0vfG4cZCyr"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    // Override point for customization after application launch.
+    
+    // Set default ACLs
+    PFACL *defaultACL = [PFACL ACL];
+    [defaultACL setPublicReadAccess:YES];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
     return YES;
+
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

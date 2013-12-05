@@ -17,7 +17,7 @@
                BlueprintIdentifier = "0877B67B181DF4D000EBF010"
                BuildableName = "TableViewStory.app"
                BlueprintName = "TableViewStory"
-               ReferencedContainer = "container:TableViewStory.xcodeproj">
+               ReferencedContainer = "container:What&apos;s Up Harvard.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "0877B69C181DF4D000EBF010"
                BuildableName = "TableViewStoryTests.xctest"
                BlueprintName = "TableViewStoryTests"
-               ReferencedContainer = "container:TableViewStory.xcodeproj">
+               ReferencedContainer = "container:What&apos;s Up Harvard.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "0877B67B181DF4D000EBF010"
             BuildableName = "TableViewStory.app"
             BlueprintName = "TableViewStory"
-            ReferencedContainer = "container:TableViewStory.xcodeproj">
+            ReferencedContainer = "container:What&apos;s Up Harvard.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "0877B67B181DF4D000EBF010"
             BuildableName = "TableViewStory.app"
             BlueprintName = "TableViewStory"
-            ReferencedContainer = "container:TableViewStory.xcodeproj">
+            ReferencedContainer = "container:What&apos;s Up Harvard.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -82,7 +82,7 @@
             BlueprintIdentifier = "0877B67B181DF4D000EBF010"
             BuildableName = "TableViewStory.app"
             BlueprintName = "TableViewStory"
-            ReferencedContainer = "container:TableViewStory.xcodeproj">
+            ReferencedContainer = "container:What&apos;s Up Harvard.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

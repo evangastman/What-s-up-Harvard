@@ -21,23 +21,28 @@
 		0815C1C3183071520004F850 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815C1C2183071520004F850 /* Security.framework */; };
 		0815C1C51830715A0004F850 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815C1C41830715A0004F850 /* StoreKit.framework */; };
 		0815C1C7183071620004F850 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815C1C6183071620004F850 /* SystemConfiguration.framework */; };
+		085CC558184F838E00F6FF7D /* Login.png in Resources */ = {isa = PBXBuildFile; fileRef = 085CC554184F838E00F6FF7D /* Login.png */; };
+		085CC559184F838E00F6FF7D /* LoginDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 085CC555184F838E00F6FF7D /* LoginDown.png */; };
+		085CC55A184F838E00F6FF7D /* SignUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 085CC556184F838E00F6FF7D /* SignUp.png */; };
+		085CC55B184F838E00F6FF7D /* SignUpDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 085CC557184F838E00F6FF7D /* SignUpDown.png */; };
+		085CC561184F906B00F6FF7D /* whatsuplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 085CC560184F906B00F6FF7D /* whatsuplogo.png */; };
+		086BA9B5184F9D3500B84012 /* MyLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 086BA9B2184F9D3400B84012 /* MyLogInViewController.m */; };
+		086BA9B6184F9D3500B84012 /* MySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 086BA9B4184F9D3500B84012 /* MySignUpViewController.m */; };
+		086BA9BA185016E600B84012 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086BA9B9185016E500B84012 /* MessageUI.framework */; };
 		0876DBA01842A8F9005AB689 /* MyTableDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0876DB9F1842A8F9005AB689 /* MyTableDateController.m */; };
 		0876DBA31842ACDB005AB689 /* EventDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0876DBA21842ACDB005AB689 /* EventDateCell.m */; };
-		0876DBA61842BFA0005AB689 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0876DBA51842BFA0005AB689 /* TestViewController.m */; };
 		0877B680181DF4D000EBF010 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B67F181DF4D000EBF010 /* Foundation.framework */; };
 		0877B682181DF4D000EBF010 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B681181DF4D000EBF010 /* CoreGraphics.framework */; };
 		0877B684181DF4D000EBF010 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B683181DF4D000EBF010 /* UIKit.framework */; };
 		0877B68A181DF4D000EBF010 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0877B688181DF4D000EBF010 /* InfoPlist.strings */; };
 		0877B68C181DF4D000EBF010 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0877B68B181DF4D000EBF010 /* main.m */; };
-		0877B690181DF4D000EBF010 /* TableViewStoryAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0877B68F181DF4D000EBF010 /* TableViewStoryAppDelegate.m */; };
+		0877B690181DF4D000EBF010 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0877B68F181DF4D000EBF010 /* AppDelegate.m */; };
 		0877B698181DF4D000EBF010 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0877B697181DF4D000EBF010 /* Images.xcassets */; };
 		0877B69F181DF4D000EBF010 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B69E181DF4D000EBF010 /* XCTest.framework */; };
 		0877B6A0181DF4D000EBF010 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B67F181DF4D000EBF010 /* Foundation.framework */; };
 		0877B6A1181DF4D100EBF010 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0877B683181DF4D000EBF010 /* UIKit.framework */; };
 		0877B6A9181DF4D100EBF010 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0877B6A7181DF4D100EBF010 /* InfoPlist.strings */; };
 		0877B6AB181DF4D100EBF010 /* TableViewStoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0877B6AA181DF4D100EBF010 /* TableViewStoryTests.m */; };
-		0877B6B6181DF58B00EBF010 /* CarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0877B6B5181DF58B00EBF010 /* CarTableViewController.m */; };
-		0877B6B9181DF68900EBF010 /* CarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0877B6B8181DF68900EBF010 /* CarTableViewCell.m */; };
 		0877B6BC181DFF5900EBF010 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0877B6BB181DFF5800EBF010 /* EventDetailViewController.m */; };
 		0877B6C2181E05F300EBF010 /* crimson.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0877B6BD181E05F300EBF010 /* crimson.jpg */; };
 		0877B6C3181E05F300EBF010 /* formal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0877B6BE181E05F300EBF010 /* formal.jpg */; };
@@ -47,6 +52,8 @@
 		088B05C01835AD4700324699 /* MyTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 088B05BF1835AD4700324699 /* MyTableController.m */; };
 		088B05C21835ADD700324699 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088B05C11835ADD700324699 /* Main.storyboard */; };
 		088B05C51835B12100324699 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 088B05C41835B12100324699 /* EventCell.m */; };
+		08AD237D184BE09E00D7EE32 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 08AD237C184BE09E00D7EE32 /* clock.png */; };
+		08AD237F184BE24600D7EE32 /* trending.png in Resources */ = {isa = PBXBuildFile; fileRef = 08AD237E184BE24600D7EE32 /* trending.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,12 +82,20 @@
 		0815C1C2183071520004F850 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0815C1C41830715A0004F850 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0815C1C6183071620004F850 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		085CC554184F838E00F6FF7D /* Login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Login.png; sourceTree = "<group>"; };
+		085CC555184F838E00F6FF7D /* LoginDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginDown.png; sourceTree = "<group>"; };
+		085CC556184F838E00F6FF7D /* SignUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignUp.png; sourceTree = "<group>"; };
+		085CC557184F838E00F6FF7D /* SignUpDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignUpDown.png; sourceTree = "<group>"; };
+		085CC560184F906B00F6FF7D /* whatsuplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whatsuplogo.png; sourceTree = "<group>"; };
+		086BA9B1184F9D3400B84012 /* MyLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLogInViewController.h; sourceTree = "<group>"; };
+		086BA9B2184F9D3400B84012 /* MyLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLogInViewController.m; sourceTree = "<group>"; };
+		086BA9B3184F9D3400B84012 /* MySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignUpViewController.h; sourceTree = "<group>"; };
+		086BA9B4184F9D3500B84012 /* MySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignUpViewController.m; sourceTree = "<group>"; };
+		086BA9B9185016E500B84012 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0876DB9E1842A8F9005AB689 /* MyTableDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTableDateController.h; path = ../MyTableDateController.h; sourceTree = "<group>"; };
 		0876DB9F1842A8F9005AB689 /* MyTableDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTableDateController.m; path = ../MyTableDateController.m; sourceTree = "<group>"; };
 		0876DBA11842ACDB005AB689 /* EventDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDateCell.h; sourceTree = "<group>"; };
 		0876DBA21842ACDB005AB689 /* EventDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDateCell.m; sourceTree = "<group>"; };
-		0876DBA41842BF9F005AB689 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		0876DBA51842BFA0005AB689 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		0877B67C181DF4D000EBF010 /* TableViewStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0877B67F181DF4D000EBF010 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0877B681181DF4D000EBF010 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,18 +104,14 @@
 		0877B689181DF4D000EBF010 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0877B68B181DF4D000EBF010 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0877B68D181DF4D000EBF010 /* TableViewStory-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TableViewStory-Prefix.pch"; sourceTree = "<group>"; };
-		0877B68E181DF4D000EBF010 /* TableViewStoryAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewStoryAppDelegate.h; sourceTree = "<group>"; };
-		0877B68F181DF4D000EBF010 /* TableViewStoryAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewStoryAppDelegate.m; sourceTree = "<group>"; };
+		0877B68E181DF4D000EBF010 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0877B68F181DF4D000EBF010 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0877B697181DF4D000EBF010 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0877B69D181DF4D000EBF010 /* TableViewStoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableViewStoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0877B69E181DF4D000EBF010 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0877B6A6181DF4D100EBF010 /* TableViewStoryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TableViewStoryTests-Info.plist"; sourceTree = "<group>"; };
 		0877B6A8181DF4D100EBF010 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0877B6AA181DF4D100EBF010 /* TableViewStoryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewStoryTests.m; sourceTree = "<group>"; };
-		0877B6B4181DF58B00EBF010 /* CarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarTableViewController.h; sourceTree = "<group>"; };
-		0877B6B5181DF58B00EBF010 /* CarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTableViewController.m; sourceTree = "<group>"; };
-		0877B6B7181DF68900EBF010 /* CarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarTableViewCell.h; sourceTree = "<group>"; };
-		0877B6B8181DF68900EBF010 /* CarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTableViewCell.m; sourceTree = "<group>"; };
 		0877B6BA181DFF5800EBF010 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
 		0877B6BB181DFF5800EBF010 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		0877B6BD181E05F300EBF010 /* crimson.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crimson.jpg; sourceTree = "<group>"; };
@@ -113,6 +124,8 @@
 		088B05C11835ADD700324699 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		088B05C31835B12100324699 /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
 		088B05C41835B12100324699 /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
+		08AD237C184BE09E00D7EE32 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		08AD237E184BE24600D7EE32 /* trending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trending.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				086BA9BA185016E600B84012 /* MessageUI.framework in Frameworks */,
 				0815C1C7183071620004F850 /* SystemConfiguration.framework in Frameworks */,
 				0815C1C51830715A0004F850 /* StoreKit.framework in Frameworks */,
 				0815C1C3183071520004F850 /* Security.framework in Frameworks */,
@@ -149,10 +163,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		081492BA184E25BE0090CE96 /* Trending Table */ = {
+			isa = PBXGroup;
+			children = (
+				088B05C31835B12100324699 /* EventCell.h */,
+				088B05C41835B12100324699 /* EventCell.m */,
+				088B05BE1835AD4700324699 /* MyTableController.h */,
+				088B05BF1835AD4700324699 /* MyTableController.m */,
+			);
+			name = "Trending Table";
+			sourceTree = "<group>";
+		};
+		081492BB184E25ED0090CE96 /* By Date Table */ = {
+			isa = PBXGroup;
+			children = (
+				0876DBA11842ACDB005AB689 /* EventDateCell.h */,
+				0876DBA21842ACDB005AB689 /* EventDateCell.m */,
+				0876DB9E1842A8F9005AB689 /* MyTableDateController.h */,
+				0876DB9F1842A8F9005AB689 /* MyTableDateController.m */,
+			);
+			name = "By Date Table";
+			sourceTree = "<group>";
+		};
+		081492BC184E26430090CE96 /* Event Details */ = {
+			isa = PBXGroup;
+			children = (
+				0877B6BA181DFF5800EBF010 /* EventDetailViewController.h */,
+				0877B6BB181DFF5800EBF010 /* EventDetailViewController.m */,
+				080B5709183AA685002E1D3E /* EventDetailModel.h */,
+				080B570A183AA686002E1D3E /* EventDetailModel.m */,
+			);
+			name = "Event Details";
+			sourceTree = "<group>";
+		};
+		086BA9B7184FA23B00B84012 /* Login View */ = {
+			isa = PBXGroup;
+			children = (
+				086BA9B1184F9D3400B84012 /* MyLogInViewController.h */,
+				086BA9B2184F9D3400B84012 /* MyLogInViewController.m */,
+			);
+			name = "Login View";
+			sourceTree = "<group>";
+		};
+		086BA9B8184FA24F00B84012 /* Signup View */ = {
+			isa = PBXGroup;
+			children = (
+				086BA9B3184F9D3400B84012 /* MySignUpViewController.h */,
+				086BA9B4184F9D3500B84012 /* MySignUpViewController.m */,
+			);
+			name = "Signup View";
+			sourceTree = "<group>";
+		};
 		0877B673181DF4D000EBF010 = {
 			isa = PBXGroup;
 			children = (
-				0877B685181DF4D000EBF010 /* TableViewStory */,
+				0877B685181DF4D000EBF010 /* What's Up Harvard */,
 				0877B6A4181DF4D100EBF010 /* TableViewStoryTests */,
 				0877B67E181DF4D000EBF010 /* Frameworks */,
 				0877B67D181DF4D000EBF010 /* Products */,
@@ -171,6 +236,7 @@
 		0877B67E181DF4D000EBF010 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				086BA9B9185016E500B84012 /* MessageUI.framework */,
 				0815C1C6183071620004F850 /* SystemConfiguration.framework */,
 				0815C1C41830715A0004F850 /* StoreKit.framework */,
 				0815C1C2183071520004F850 /* Security.framework */,
@@ -189,40 +255,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0877B685181DF4D000EBF010 /* TableViewStory */ = {
+		0877B685181DF4D000EBF010 /* What's Up Harvard */ = {
 			isa = PBXGroup;
 			children = (
-				088B05C31835B12100324699 /* EventCell.h */,
-				088B05C41835B12100324699 /* EventCell.m */,
-				0876DBA11842ACDB005AB689 /* EventDateCell.h */,
-				0876DBA21842ACDB005AB689 /* EventDateCell.m */,
+				086BA9B7184FA23B00B84012 /* Login View */,
+				086BA9B8184FA24F00B84012 /* Signup View */,
+				0877B68E181DF4D000EBF010 /* AppDelegate.h */,
+				0877B68F181DF4D000EBF010 /* AppDelegate.m */,
 				088B05C11835ADD700324699 /* Main.storyboard */,
-				088B05BE1835AD4700324699 /* MyTableController.h */,
-				088B05BF1835AD4700324699 /* MyTableController.m */,
-				0876DB9E1842A8F9005AB689 /* MyTableDateController.h */,
-				0876DB9F1842A8F9005AB689 /* MyTableDateController.m */,
-				0876DBA41842BF9F005AB689 /* TestViewController.h */,
-				0876DBA51842BFA0005AB689 /* TestViewController.m */,
-				0877B68E181DF4D000EBF010 /* TableViewStoryAppDelegate.h */,
-				0877B68F181DF4D000EBF010 /* TableViewStoryAppDelegate.m */,
-				0877B6B4181DF58B00EBF010 /* CarTableViewController.h */,
-				0877B6B5181DF58B00EBF010 /* CarTableViewController.m */,
-				0877B6B7181DF68900EBF010 /* CarTableViewCell.h */,
-				0877B6B8181DF68900EBF010 /* CarTableViewCell.m */,
-				0877B6BA181DFF5800EBF010 /* EventDetailViewController.h */,
-				0877B6BB181DFF5800EBF010 /* EventDetailViewController.m */,
-				080B5709183AA685002E1D3E /* EventDetailModel.h */,
-				080B570A183AA686002E1D3E /* EventDetailModel.m */,
-				0877B697181DF4D000EBF010 /* Images.xcassets */,
+				081492BA184E25BE0090CE96 /* Trending Table */,
+				081492BB184E25ED0090CE96 /* By Date Table */,
+				081492BC184E26430090CE96 /* Event Details */,
 				0877B686181DF4D000EBF010 /* Supporting Files */,
 				0811CD35182042E700C0F462 /* Model.xcdatamodeld */,
+				0877B697181DF4D000EBF010 /* Images.xcassets */,
 			);
+			name = "What's Up Harvard";
 			path = TableViewStory;
 			sourceTree = "<group>";
 		};
 		0877B686181DF4D000EBF010 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				085CC560184F906B00F6FF7D /* whatsuplogo.png */,
+				085CC554184F838E00F6FF7D /* Login.png */,
+				085CC555184F838E00F6FF7D /* LoginDown.png */,
+				085CC556184F838E00F6FF7D /* SignUp.png */,
+				085CC557184F838E00F6FF7D /* SignUpDown.png */,
+				08AD237E184BE24600D7EE32 /* trending.png */,
+				08AD237C184BE09E00D7EE32 /* clock.png */,
 				080CFBB6181EE8030004C363 /* bloomberg.jpg */,
 				080CFBB7181EE8030004C363 /* entrepreneurship.jpg */,
 				0877B6BD181E05F300EBF010 /* crimson.jpg */,
@@ -300,7 +361,7 @@
 		0877B674181DF4D000EBF010 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = TableViewStory;
+				CLASSPREFIX = "What's Up Harvard";
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Alex Yang";
 				TargetAttributes = {
@@ -309,7 +370,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0877B677181DF4D000EBF010 /* Build configuration list for PBXProject "TableViewStory" */;
+			buildConfigurationList = 0877B677181DF4D000EBF010 /* Build configuration list for PBXProject "What's Up Harvard" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -335,14 +396,21 @@
 			files = (
 				0877B6C5181E05F300EBF010 /* obama.jpg in Resources */,
 				088B05C21835ADD700324699 /* Main.storyboard in Resources */,
+				085CC55A184F838E00F6FF7D /* SignUp.png in Resources */,
+				08AD237F184BE24600D7EE32 /* trending.png in Resources */,
 				0877B698181DF4D000EBF010 /* Images.xcassets in Resources */,
 				080CFBB8181EE8030004C363 /* bloomberg.jpg in Resources */,
 				0877B6C6181E05F300EBF010 /* oprah.jpg in Resources */,
 				0877B6C2181E05F300EBF010 /* crimson.jpg in Resources */,
 				0877B6C4181E05F300EBF010 /* movie.jpg in Resources */,
+				085CC558184F838E00F6FF7D /* Login.png in Resources */,
+				08AD237D184BE09E00D7EE32 /* clock.png in Resources */,
 				080CFBB9181EE8030004C363 /* entrepreneurship.jpg in Resources */,
+				085CC55B184F838E00F6FF7D /* SignUpDown.png in Resources */,
 				0877B68A181DF4D000EBF010 /* InfoPlist.strings in Resources */,
 				0877B6C3181E05F300EBF010 /* formal.jpg in Resources */,
+				085CC559184F838E00F6FF7D /* LoginDown.png in Resources */,
+				085CC561184F906B00F6FF7D /* whatsuplogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,17 +429,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				086BA9B5184F9D3500B84012 /* MyLogInViewController.m in Sources */,
 				088B05C51835B12100324699 /* EventCell.m in Sources */,
 				080B570B183AA686002E1D3E /* EventDetailModel.m in Sources */,
-				0877B690181DF4D000EBF010 /* TableViewStoryAppDelegate.m in Sources */,
+				0877B690181DF4D000EBF010 /* AppDelegate.m in Sources */,
 				0877B6BC181DFF5900EBF010 /* EventDetailViewController.m in Sources */,
+				086BA9B6184F9D3500B84012 /* MySignUpViewController.m in Sources */,
 				0876DBA01842A8F9005AB689 /* MyTableDateController.m in Sources */,
 				0876DBA31842ACDB005AB689 /* EventDateCell.m in Sources */,
-				0876DBA61842BFA0005AB689 /* TestViewController.m in Sources */,
 				0877B68C181DF4D000EBF010 /* main.m in Sources */,
-				0877B6B9181DF68900EBF010 /* CarTableViewCell.m in Sources */,
 				088B05C01835AD4700324699 /* MyTableController.m in Sources */,
-				0877B6B6181DF58B00EBF010 /* CarTableViewController.m in Sources */,
 				0811CD37182042E700C0F462 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,7 +632,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0877B677181DF4D000EBF010 /* Build configuration list for PBXProject "TableViewStory" */ = {
+		0877B677181DF4D000EBF010 /* Build configuration list for PBXProject "What's Up Harvard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0877B6AC181DF4D100EBF010 /* Debug */,
